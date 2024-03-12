@@ -13,7 +13,7 @@ permissions:
 jobs:
   main-test:
     env:
-      NX_EXECUTION_ENV: tests
+      NX_CI_EXECUTION_ENV: tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
       - run: npx nx-cloud complete-ci-run
   main-build:
     env:
-      NX_EXECUTION_ENV: build
+      NX_CI_EXECUTION_ENV: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
