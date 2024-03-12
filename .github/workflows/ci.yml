@@ -33,7 +33,7 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - run: npx nx-cloud record -- nx format:check
-      - run: npx nx affected -t lint test e2e-ci
+      - run: npx nx run-many -t lint test e2e-ci
   main-build:
     env:
       NX_EXECUTION_ENV: build
@@ -55,4 +55,4 @@ jobs:
       - run: npm ci
       - uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx build
+      - run: npx nx run-many -t build
