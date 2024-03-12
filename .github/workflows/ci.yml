@@ -34,6 +34,7 @@ jobs:
 
       - run: npx nx-cloud record -- nx format:check
       - run: npx nx run-many -t lint test e2e-ci
+      - run: npx nx-cloud complete-ci-run
   main-build:
     env:
       NX_EXECUTION_ENV: build
@@ -47,6 +48,7 @@ jobs:
       # The "--stop-agents-after" is optional, but allows idle agents to shut down once the "build" targets have been requested
       - run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-plus-js"
 
+      # TODO: how do I tell nx cloud to spawn larger machines within this same CIPE?
       # Cache node_modules
       - uses: actions/setup-node@v3
         with:
@@ -56,3 +58,4 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - run: npx nx run-many -t build
+      - run: npx nx-cloud complete-ci-run
